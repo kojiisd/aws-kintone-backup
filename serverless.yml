@@ -3,6 +3,9 @@ service: aws-kintone-backup
 provider:
   name: aws
   runtime: python3.6
+  region: us-east-1
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${self:custom.profiles.${self:provider.stage}}
   environment:
     KINTONE_URL: https://{kintone_domain}/k/v1/records.json?app={kintone_app}
     KINTONE_FORM_BASE_URL: https://{kintone_domain}/k/v1/form.json?app={kintone_app}

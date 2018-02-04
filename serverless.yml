@@ -6,7 +6,6 @@ provider:
   environment:
     KINTONE_URL: https://{kintone_domain}/k/v1/records.json?app={kintone_app}
     KINTONE_FORM_BASE_URL: https://{kintone_domain}/k/v1/form.json?app={kintone_app}
-    BASIC_HEADERS_KEY: Authorization
     KINTONE_HEADERS_KEY: X-Cybozu-API-Token
 custom:
   defaultStage: dev
@@ -23,7 +22,6 @@ functions:
     handler: handler.run
     environment:
       KINTONE_DOMAIN: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_DOMAIN}
-      BASIC_HEADERS_VALUE: ${self:custom.otherfile.environment.${self:provider.stage}.BASIC_HEADERS_VALUE}
       KINTONE_API_KEY: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_API_KEY}
       KINTONE_APP: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_APP}
       

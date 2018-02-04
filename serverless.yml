@@ -5,16 +5,12 @@ provider:
   runtime: python3.6
   region: us-east-1
   stage: ${opt:stage, self:custom.defaultStage}
-  profile: ${self:custom.profiles.${self:provider.stage}}
   environment:
     KINTONE_URL: https://{kintone_domain}/k/v1/records.json?app={kintone_app}
     KINTONE_FORM_BASE_URL: https://{kintone_domain}/k/v1/form.json?app={kintone_app}
     KINTONE_HEADERS_KEY: X-Cybozu-API-Token
 custom:
   defaultStage: dev
-  profiles:
-    dev: sls
-    prd: sls
   otherfile:
     environment:
       dev: ${file(./conf/dev.yml)}

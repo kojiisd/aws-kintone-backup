@@ -3,8 +3,27 @@ service: aws-kintone-backup
 provider:
   name: aws
   runtime: python3.6
+  environment:
+    KINTONE_URL: https://{kintone_domain}/k/v1/records.json?app={kintone_app}
+    KINTONE_FORM_BASE_URL: https://{kintone_domain}/k/v1/form.json?app={kintone_app}
+    BASIC_HEADERS_KEY: Authorization
+    KINTONE_HEADERS_KEY: X-Cybozu-API-Token
+custom:
+  defaultStage: dev
+  profiles:
+    dev: sls
+    prd: sls
+  otherfile:
+    environment:
+      dev: ${file(./conf/dev/dev.yml)}
+      prd: ${file(./conf/prd/prd.yml)}
 
 functions:
   run:
     handler: handler.run
-
+    environment:
+      KINTONE_DOMAIN: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_DOMAIN}
+      BASIC_HEADERS_VALUE: ${self:custom.otherfile.environment.${self:provider.stage}.BASIC_HEADERS_VALUE}
+      KINTONE_API_KEY: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_API_KEY}
+      KINTONE_APP: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_APP}
+      

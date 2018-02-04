@@ -1,0 +1,10 @@
+service: aws-kintone-backup
+
+provider:
+  name: aws
+  runtime: python3.6
+
+functions:
+  run:
+    handler: handler.run
+

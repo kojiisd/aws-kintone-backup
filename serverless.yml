@@ -23,4 +23,6 @@ functions:
       KINTONE_DOMAIN: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_DOMAIN}
       KINTONE_API_KEY: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_API_KEY}
       KINTONE_APP: ${self:custom.otherfile.environment.${self:provider.stage}.KINTONE_APP}
+      S3_BUCKET: ${self:custom.otherfile.environment.${self:provider.stage}.S3_BUCKET}
+      S3_OBJECT: ${self:custom.otherfile.environment.${self:provider.stage}.S3_OBJECT}
       

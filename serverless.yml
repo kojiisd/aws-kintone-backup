@@ -14,8 +14,8 @@ custom:
     prd: sls
   otherfile:
     environment:
-      dev: ${file(./conf/dev/dev.yml)}
-      prd: ${file(./conf/prd/prd.yml)}
+      dev: ${file(./conf/dev.yml)}
+      prd: ${file(./conf/prd.yml)}
 
 functions:
   run:
